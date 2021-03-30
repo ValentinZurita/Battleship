@@ -1,37 +1,22 @@
-// La ubicación de la nave de batalla.
-var location1 = Math.floor(Math.random() * 5);
-var location2 = 4;
-var location3 = 5;
+const view = {
+    displayMessege: function (msg) {
+        const messageArea = document.getElementById("messsageArea");
+        messageArea.innerHTML = msg;
+    },
 
-// Estadisticas del juego
-var guess;
-var hits = 0;
-var guesses = 0;
-var isSunk = false;
+    displayHit: function (location) {
+        const cell = document.getElementById(location);
+        cell.setAttribute("class", "hit");
+    },
 
-// Main loop del juego.
-while (isSunk == false){
-    guess = prompt("En sus marcas, listos, fuego! (Introduce un numero del 0 al 6");
-    if (guess < 0 || guess > 6){
-        alert("Introduce una opción correcta.");
+    displayMiss: function (location) {
+        const cell = document.getElementById(location);
+        cell.setAttribute("class", "miss");
     }
-    else {
-        guesses++;
 
-        if(guess == location1 || guess == location2 || guess == location3){
-            alert("BOMM!!");
-            hits++;
+};
 
-            if (hits == 3){
-                isSunk = true;
-                alert("Has hundido mi nave");
-            }
-        }else {
-            alert("Fallaste");
-        }
-    }
-}
+view.displayMessege('Carne');
+view.displayHit("02");
+view.displayMiss("00");
 
-// Mostrar estadisticas.
-var status = "Te ha tomado " + guesses + " intentos hundir la nave, por lo tanto tu efectividad ha sido del " + (3/guesses);
-alert(status);
